@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Provenance Risk Research - Palette Preview</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Caslon+Text:ital,wght@0,400;0,700;1,400&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Libre Caslon Text', Georgia, serif;
+    line-height: 1.6;
+  }
+
+  .caption-bar {
+    padding: 24px 48px;
+    background: #1a1a1a;
+    color: #f5f5f5;
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-size: 13px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+
+  .caption-bar .label { font-weight: 600; }
+  .caption-bar .swatch {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    text-transform: none;
+    letter-spacing: 0.02em;
+    font-weight: 400;
+    opacity: 0.85;
+  }
+  .caption-bar .swatch::before {
+    content: "";
+    width: 16px;
+    height: 16px;
+    display: inline-block;
+    border-radius: 2px;
+    border: 1px solid rgba(255,255,255,0.2);
+  }
+
+  .hero {
+    min-height: 100vh;
+    padding: 48px 64px 64px;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+  }
+
+  .hero-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    margin-bottom: 120px;
+  }
+
+  .hero-nav .brand {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    font-family: 'Libre Caslon Text', serif;
+    font-size: 18px;
+    font-weight: 700;
+    letter-spacing: 0.01em;
+    text-transform: none;
+  }
+
+  .hero-nav .mark {
+    width: 36px;
+    height: 36px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Libre Caslon Text', serif;
+    font-weight: 700;
+    font-size: 14px;
+    letter-spacing: 0.05em;
+  }
+
+  .hero-nav ul {
+    display: flex;
+    gap: 36px;
+    list-style: none;
+  }
+
+  .hero-content {
+    max-width: 820px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .eyebrow {
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 24px;
+  }
+
+  .hero h1 {
+    font-family: 'Libre Caslon Text', serif;
+    font-size: 64px;
+    line-height: 1.08;
+    font-weight: 400;
+    letter-spacing: -0.01em;
+    margin-bottom: 32px;
+  }
+
+  .hero h1 em {
+    font-style: italic;
+  }
+
+  .lede {
+    font-size: 22px;
+    line-height: 1.55;
+    max-width: 680px;
+    margin-bottom: 48px;
+  }
+
+  .featured {
+    border-top: 1px solid;
+    padding-top: 28px;
+    display: flex;
+    gap: 40px;
+    align-items: flex-start;
+    max-width: 780px;
+  }
+
+  .featured .tag {
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    padding-top: 4px;
+    min-width: 160px;
+  }
+
+  .featured .paper-title {
+    font-family: 'Libre Caslon Text', serif;
+    font-size: 19px;
+    font-style: italic;
+    line-height: 1.4;
+    margin-bottom: 8px;
+  }
+
+  .featured .paper-meta {
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-size: 13px;
+    opacity: 0.75;
+  }
+
+  /* ======= A: BURGUNDY + CREAM ======= */
+  .hero-a {
+    background: #F6EFE3;
+    color: #2A1A1E;
+  }
+  .hero-a .hero-nav .mark {
+    background: #7B1E2F;
+    color: #F6EFE3;
+  }
+  .hero-a .hero-nav ul a {
+    color: #2A1A1E;
+    text-decoration: none;
+  }
+  .hero-a .eyebrow { color: #7B1E2F; }
+  .hero-a h1 em { color: #7B1E2F; }
+  .hero-a .featured { border-color: #7B1E2F; }
+  .hero-a .featured .tag { color: #7B1E2F; }
+
+  /* ======= B: DEEP FOREST + WARM CREAM ======= */
+  .hero-b {
+    background: #F2ECDD;
+    color: #1A1F1A;
+  }
+  .hero-b .hero-nav .mark {
+    background: #23432F;
+    color: #F2ECDD;
+  }
+  .hero-b .hero-nav ul a {
+    color: #1A1F1A;
+    text-decoration: none;
+  }
+  .hero-b .eyebrow { color: #23432F; }
+  .hero-b h1 em { color: #23432F; }
+  .hero-b .featured { border-color: #23432F; }
+  .hero-b .featured .tag { color: #23432F; }
+
+  /* ======= C: DEEP TEAL + OFF-WHITE ======= */
+  .hero-c {
+    background: #F6F1E6;
+    color: #10201F;
+  }
+  .hero-c .hero-nav .mark {
+    background: #0F4946;
+    color: #F6F1E6;
+  }
+  .hero-c .hero-nav ul a {
+    color: #10201F;
+    text-decoration: none;
+  }
+  .hero-c .eyebrow { color: #0F4946; }
+  .hero-c h1 em { color: #0F4946; }
+  .hero-c .featured { border-color: #0F4946; }
+  .hero-c .featured .tag { color: #0F4946; }
+
+  /* swatch indicators in caption */
+  .sw-a1::before { background: #7B1E2F; }
+  .sw-a2::before { background: #F6EFE3; }
+  .sw-b1::before { background: #23432F; }
+  .sw-b2::before { background: #F2ECDD; }
+  .sw-c1::before { background: #0F4946; }
+  .sw-c2::before { background: #F6F1E6; }
+
+  @media (max-width: 720px) {
+    .hero { padding: 32px 24px; }
+    .hero-nav { margin-bottom: 60px; }
+    .hero-nav ul { display: none; }
+    .hero h1 { font-size: 40px; }
+    .lede { font-size: 18px; }
+    .featured { flex-direction: column; gap: 12px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ===================== A: BURGUNDY + CREAM ===================== -->
+<div class="caption-bar">
+  <span class="label">Option A - Burgundy & Cream</span>
+  <span class="swatch sw-a1">Burgundy #7B1E2F</span>
+  <span class="swatch sw-a2">Cream #F6EFE3</span>
+  <span class="swatch">Reads like: Brookings, Harvard IOP</span>
+</div>
+<section class="hero hero-a">
+  <nav class="hero-nav">
+    <div class="brand">
+      <span class="mark">PR</span>
+      <span>Provenance Risk Research</span>
+    </div>
+    <ul>
+      <li><a href="#">Research</a></li>
+      <li><a href="#">Datasets</a></li>
+      <li><a href="#">About</a></li>
+      <li><a href="#">Contact</a></li>
+    </ul>
+  </nav>
+  <div class="hero-content">
+    <div class="eyebrow">Established 2026 &middot; 501(c)(3) Research Foundation</div>
+    <h1>Independent research on <em>third-party risk</em>, software supply chain security, and operational resilience in financial services.</h1>
+    <p class="lede">Peer-reviewed papers, open datasets, and diagnostic frameworks that make invisible dependencies visible to the institutions that carry them.</p>
+    <div class="featured">
+      <div class="tag">Featured Research</div>
+      <div>
+        <div class="paper-title">The Collective Fragility Paradox: How Entity-Focused TPRM Frameworks Miss Dependency-Level Risk Propagation</div>
+        <div class="paper-meta">Working Paper No. 1 &middot; 104 pages &middot; Read / Download PDF</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== B: DEEP FOREST + WARM CREAM ===================== -->
+<div class="caption-bar">
+  <span class="label">Option B - Deep Forest & Cream</span>
+  <span class="swatch sw-b1">Forest #23432F</span>
+  <span class="swatch sw-b2">Cream #F2ECDD</span>
+  <span class="swatch">Reads like: Yale SOM, Dartmouth Tuck Center</span>
+</div>
+<section class="hero hero-b">
+  <nav class="hero-nav">
+    <div class="brand">
+      <span class="mark">PR</span>
+      <span>Provenance Risk Research</span>
+    </div>
+    <ul>
+      <li><a href="#">Research</a></li>
+      <li><a href="#">Datasets</a></li>
+      <li><a href="#">About</a></li>
+      <li><a href="#">Contact</a></li>
+    </ul>
+  </nav>
+  <div class="hero-content">
+    <div class="eyebrow">Established 2026 &middot; 501(c)(3) Research Foundation</div>
+    <h1>Independent research on <em>third-party risk</em>, software supply chain security, and operational resilience in financial services.</h1>
+    <p class="lede">Peer-reviewed papers, open datasets, and diagnostic frameworks that make invisible dependencies visible to the institutions that carry them.</p>
+    <div class="featured">
+      <div class="tag">Featured Research</div>
+      <div>
+        <div class="paper-title">The Collective Fragility Paradox: How Entity-Focused TPRM Frameworks Miss Dependency-Level Risk Propagation</div>
+        <div class="paper-meta">Working Paper No. 1 &middot; 104 pages &middot; Read / Download PDF</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== C: DEEP TEAL + OFF-WHITE ===================== -->
+<div class="caption-bar">
+  <span class="label">Option C - Deep Teal & Off-White</span>
+  <span class="swatch sw-c1">Teal #0F4946</span>
+  <span class="swatch sw-c2">Off-white #F6F1E6</span>
+  <span class="swatch">Reads like: RAND, Kauffman Foundation</span>
+</div>
+<section class="hero hero-c">
+  <nav class="hero-nav">
+    <div class="brand">
+      <span class="mark">PR</span>
+      <span>Provenance Risk Research</span>
+    </div>
+    <ul>
+      <li><a href="#">Research</a></li>
+      <li><a href="#">Datasets</a></li>
+      <li><a href="#">About</a></li>
+      <li><a href="#">Contact</a></li>
+    </ul>
+  </nav>
+  <div class="hero-content">
+    <div class="eyebrow">Established 2026 &middot; 501(c)(3) Research Foundation</div>
+    <h1>Independent research on <em>third-party risk</em>, software supply chain security, and operational resilience in financial services.</h1>
+    <p class="lede">Peer-reviewed papers, open datasets, and diagnostic frameworks that make invisible dependencies visible to the institutions that carry them.</p>
+    <div class="featured">
+      <div class="tag">Featured Research</div>
+      <div>
+        <div class="paper-title">The Collective Fragility Paradox: How Entity-Focused TPRM Frameworks Miss Dependency-Level Risk Propagation</div>
+        <div class="paper-meta">Working Paper No. 1 &middot; 104 pages &middot; Read / Download PDF</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</body>
+</html>
